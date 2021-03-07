@@ -18,3 +18,23 @@ Previous Page
 <div id="results">
 </div>
 <script src="searcher.min.js"></script>
+<script>
+    var clicked = false, clickY;
+$(document).on({
+    'mousemove': function(e) {
+        clicked && updateScrollPos(e);
+    },
+    'mousedown': function(e) {
+        clicked = true;
+        clickY = e.pageY;
+    },
+    'mouseup': function() {
+        clicked = false;
+        $('html').css('cursor', 'auto');
+    }
+});
+
+var updateScrollPos = function(e) {
+    $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
+}
+</script>
