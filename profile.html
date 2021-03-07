@@ -48,4 +48,23 @@ elm.innerHTML=stat1 + ": " + stat2;
   var dat=data.accountID;
 document.getElementById('lvls').href='userlevels.html?user=' + dat;  
        });
+
+    var clicked = false, clickY;
+$(document).on({
+    'mousemove': function(e) {
+        clicked && updateScrollPos(e);
+    },
+    'mousedown': function(e) {
+        clicked = true;
+        clickY = e.pageY;
+    },
+    'mouseup': function() {
+        clicked = false;
+        $('html').css('cursor', 'auto');
+    }
+});
+
+var updateScrollPos = function(e) {
+    $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
+}
 </script>
