@@ -46,6 +46,6 @@ elm.innerHTML=stat1 + ": " + stat2;
       
        geometryDash.getApi('/api/profile/' + new URLSearchParams(location.search).get('user'), null, function(data){
   var dat=data.accountID;
-document.getElementById('lvls').href='/?user=' + dat;  
+document.getElementById('lvls').href='userlevels.html?user=' + dat;  
        });
 </script>
