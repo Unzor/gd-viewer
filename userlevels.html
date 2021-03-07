@@ -18,4 +18,22 @@ Next Page
   geometryDash.getApi('/api/profile/' + new URLSearchParams(location.search).get('user'), null, function(data){
   document.getElementById('by').innerHTML="Levels by " + data.username;
   });
+    var clicked = false, clickY;
+$(document).on({
+    'mousemove': function(e) {
+        clicked && updateScrollPos(e);
+    },
+    'mousedown': function(e) {
+        clicked = true;
+        clickY = e.pageY;
+    },
+    'mouseup': function() {
+        clicked = false;
+        $('html').css('cursor', 'auto');
+    }
+});
+
+var updateScrollPos = function(e) {
+    $(window).scrollTop($(window).scrollTop() + (clickY - e.pageY));
+}
 </script>
