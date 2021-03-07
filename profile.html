@@ -3,8 +3,9 @@
 <div id="icons">
 </div>
 <div id="stats"></div>
+<a id="lvls"><p>Levels</p></a>
 <script>
-function getUser(player){
+      function getUser(player){
       document.getElementById('stats').innerHTML="";
         document.getElementById('icons').innerHTML="";
   geometryDash.getApi('/api/profile/' + player, null, function(data,status){
@@ -42,4 +43,9 @@ elm.innerHTML=stat1 + ": " + stat2;
 }
   
   getUser(new URLSearchParams(location.search).get('user'));
+      
+       geometryDash.getApi('/api/profile/' + new URLSearchParams(location.search).get('user'), null, function(data){
+  var dat=data.accountID;
+document.getElementById('lvls').href='/?user=' + dat;  
+       });
 </script>
