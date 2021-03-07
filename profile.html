@@ -1,0 +1,45 @@
+<script src="gdapi.min.js"></script>
+<p> </p>
+<div id="icons">
+</div>
+<div id="stats"></div>
+<script>
+function getUser(player){
+      document.getElementById('stats').innerHTML="";
+        document.getElementById('icons').innerHTML="";
+  geometryDash.getApi('/api/profile/' + player, null, function(data,status){
+    console.log(JSON.stringify(data));
+    var iconID=data.icon; var col1=data.col1; 
+    var col2=data.col2; var glow=data.glow; 
+    var ship=data.ship; var ball=data.ball;
+  function createIcon(append, form, icd){
+  var elm=document.createElement('img');
+    elm.src="https://gdbrowser.com/icon/icon?icon=" + icd + "&form=" + form + "&col1=" + col1 + "&col2=" + col2 + "&glow=" + glow + "&size=20";
+  append.appendChild(elm);
+  }
+createIcon(document.getElementById('icons'), 'cube', data.icon);       
+    createIcon(document.getElementById('icons'), 'ship', data.ship);       
+        createIcon(document.getElementById('icons'), 'ball', data.ball);       
+            createIcon(document.getElementById('icons'), 'ufo', data.ufo);       
+                createIcon(document.getElementById('icons'), 'wave', data.wave);     
+                    createIcon(document.getElementById('icons'), 'robot', data.robot);       
+                        createIcon(document.getElementById('icons'), 'spider', data.spider);       
+    function setStat(stat1, stat2){
+  var elm=document.createElement('pre');
+  document.getElementById('stats').appendChild(elm);
+elm.innerHTML=stat1 + ": " + stat2;
+}
+
+    setStat('Stars', data.stars);
+        setStat('Diamonds', data.diamonds);
+            setStat('Secret Coins', data.coins);
+                setStat('User Coins', data.userCoins);
+                    setStat('Demons', data.demons);
+                        setStat('Creator Points', data.cp);
+                         setStat('Rank', data.rank);
+
+  });
+}
+  
+  getUser(new URLSearchParams(location.search).get('user'));
+</script>
